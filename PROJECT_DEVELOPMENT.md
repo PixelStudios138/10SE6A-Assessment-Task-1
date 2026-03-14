@@ -57,6 +57,7 @@ This markdown file will go over the stages of the Software Development life Cycl
   - This will be prevented by storing it in a `.gitignore` file that prevents it from being public, but still allowing the system to work fine
  
 ### Use Cases
+
 **Use Case 1: Data Retrieval:**  
 **Actor:** User (Person checking the Weather)  
 **Preconditions:** Internet connection, available API key  
@@ -70,15 +71,17 @@ This markdown file will go over the stages of the Software Development life Cycl
 
 **Postconditions:** Data is successfully retrieved for later use, or an error was presented without crashing the system
 
-**Use Case 2: --:**  
-**Actor:** --  
-**Preconditions:** --
+**Use Case 2: Data Display:**  
+**Actor:** User  
+**Preconditions:** Data successfully retrieved from API
 
-1. --
-   - n  
-2. --
-   - n
-3. --
-   - n
+1. Find Data
+   - Load data from api key into dataframe to be used
+2. Filter Data
+   - Find the specific data to be used and store it in variables, and remove any unwanted information
+3. Present Data
+   - System displays data as text with some images
 
-**Postconditions:** --
+**Postconditions:** Data is successfully displayed to the user
+
+## Determining Specifications
