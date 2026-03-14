@@ -1,3 +1,6 @@
 from api import *
+from functions import *
 
-# TODO: Write code
+api_type = "current.json"
+
+temp_ui()
