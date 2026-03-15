@@ -1,4 +1,3 @@
-from api import *
 from functions import *
 
 api_type = "current.json"
