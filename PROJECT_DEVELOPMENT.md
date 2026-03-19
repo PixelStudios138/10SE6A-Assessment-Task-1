@@ -85,3 +85,18 @@ This markdown file will go over the stages of the Software Development life Cycl
 **Postconditions:** Data is successfully displayed to the user
 
 ## Determining Specifications
+
+The following specifications are required for the project to run properly:
+- A laptop with an internet connection and sufficient ram (~25-30 MB)
+- Github
+- Python 3.11 with requests and time library installed
+
+## Design
+
+The following diagrams were made to demonstrate how the code will function before it was made.
+
+### Gantt Chart
+
+This chart shows the timing for programming this task. It will begin in Week 5 and finish just before the due date in Week 9. 
+
+![Gantt Chart describing the timing of the development of the assessment task](/Images/GanttChart.png "Gantt Chart of Development Stage")  
