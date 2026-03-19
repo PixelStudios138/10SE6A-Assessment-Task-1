@@ -1,3 +1,4 @@
+import time
 from api import *
 import requests
 
@@ -100,3 +101,4 @@ def temp_ui():
             quit()
         else:
             print("Invalid choice. Please enter a number between 1 and 4.")
+        time.sleep(2)
