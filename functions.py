@@ -4,6 +4,7 @@ import requests
 
 base_url = "https://api.weatherapi.com/v1"
 api_type = "" # String to determine what type of data to request, e.g. general weather, forecasts, alerts, etc.
+history = [] # List to store user activity in the program
 
 def send_request(city, api_type):
     """Send requests to the API and get data. The url variable combines all necessary features
@@ -80,6 +81,7 @@ def help():
     """This function provides help to the user, teaching them how to use the app, what information they can view, and navigation tips. 
     The user can choose which of these they want to view, or return to the main menu when finished."""
     while True:
+        history.append("Entered help menu")
         print("\nWhat do you need help with?")
         print("1. How to use the app")
         print("2. What information you can view")
@@ -90,21 +92,51 @@ def help():
             print("\nAfter running the file, you will be prompted to enter a city. You will be presented with basic weather data, such as temperature, " \
             "condition, and what the temperature feels like. \nYou can then choose to view more specific data, such as wind data, rain data, or extra data. " \
             "You can also choose to view help or exit the program.\n")
+            history.append("Viewed help on using the app")
         elif choice == "2":
             print("\nYou will be automatically presented with basic information, such as temperature, condition, and what the temperature feels like. \n" \
             "You can then choose to view more specific information, such as that for wind, rain, along with some additional data. \n" \
             "Wind data includes wind speed, direction, chill, and gust data. \n" \
             "Rain data includes precipitation, cloud cover, and dew point. \n" \
             "You can also view additional information on humidity, pressure, visibility, and uv index.\n")
+            history.append("Viewed help on what information they can view")
         elif choice == "3":
             print("\nNavigation tips:")
             print("- Use the numeric keys to select options from the menu.")
             print("- You can navigate back to the main menu at any time by selecting the appropriate option.\n")
+            history.append("Viewed help on navigation tips")
         elif choice == "4":
+            history.append("Exited help menu")
             return
         else:
             print("\nInvalid choice. Please enter a number between 1 and 4.\n")
+            history.append("Messed up real time")
         time.sleep(2)
+
+def save_history():
+    with open("history.txt", "a") as f:
+        f.write("\n".join(history))
+
+def view_history():
+    """This function allows the user to view their history in the program, showing them what they have done in the program"""
+    history.append("Viewed current session history")
+    print("\nYour history in the program:")
+    print("\n".join(history))
+    choice = input("\nWould you like to see full history from previous sessions? (y/n) ").lower()
+    if choice == "y":
+        try:
+            with open("history.txt", "r") as f:
+                full_history = f.read()
+                print("\nFull history from previous sessions:")
+                print("\n".join(full_history.splitlines()))
+                history.append("Viewed history from previous sessions")
+        except FileNotFoundError:
+            print("\nNo history file found. This may be your first time using the program.")
+            history.append("Tried to view history from previous sessions, but no history file found")
+    elif choice == "n":
+        return
+    else:
+        print("\nInvalid choice. Please enter 'y' or 'n'.")
 
 def ui():
     """Main user interface for the program. This handles gathering data and presenting it to the user, getting help, and exiting the program.
@@ -113,32 +145,48 @@ def ui():
     city_to_analyse = input("What city would you like to view data on? ").lower()
     weather_data = send_request(city_to_analyse, "current.json")
     gather_main_data(weather_data)
+    history.append(f"Requested and viewed main data on {city_to_analyse}")
     continue_choice = input("\nWould you like to view more data? (y/n) ").lower()
     if continue_choice == "n":
+        history.append("Exited program after viewing main data")
+        save_history()
         print("\nExiting the program.")
         quit()
     else:
         while True:
+            history.append("Entered additional data menu")
             print("\nWhat type of data would you like to view?")
             print("1. Wind data")
             print("2. Rain data")
             print("3. Extra data (pressure, humidity, UV index, visibility)")
-            print("4. Help")
-            print("5. Exit")
+            print("4. View a different city")
+            print("5. Help")
+            print("6. View history")
+            print("7. Exit")
             choice = input("Enter the number corresponding to your choice: ")
             if choice == "1":
                 get_wind_data(weather_data)
+                history.append("Viewed wind data")
             elif choice == "2":
                 get_rain_data(weather_data)
+                history.append("Viewed rain data")
             elif choice == "3":
                 get_extra_data(weather_data)
+                history.append("Viewed extra data")
             elif choice == "4":
-                help()
+                history.append("Exited additional data menu to view a different city")
+                ui()
             elif choice == "5":
+                help()
+            elif choice == "6":
+                view_history()
+            elif choice == "7":
+                history.append("Exited program after viewing additional data")
+                save_history()
                 print("\nExiting the program.")
                 quit()
             else:
-                print("\nInvalid choice. Please enter a number between 1 and 5.\n")
+                print("\nInvalid choice. Please enter a number between 1 and 7.\n")
             time.sleep(2)
 
 def startup():
@@ -150,11 +198,17 @@ def startup():
         print("\nWould you like to continue, or get some help before starting?")
         print("1. Start program")
         print("2. View help")
+        print("3. Exit")
         choice = input("Enter the number corresponding to your choice: ")
         if choice == "1":
             ui()
         elif choice == "2":
             help()
+        elif choice == "3":
+            history.append("Exited program at startup")
+            save_history()
+            print("\nExiting the program.")
+            quit()
         else:
-            print("\nInvalid choice. Please enter 1 or 2.\n")
+            print("\nInvalid choice. Please enter a number between 1 and 3.\n")
         time.sleep(2)
