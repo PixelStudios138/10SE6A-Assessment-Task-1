@@ -76,6 +76,36 @@ def get_extra_data(data):
         print(f"The UV index is {uv_index}")
         print(f"The visibility is {visibility}km")
 
+def help():
+    """This function provides help to the user, teaching them how to use the app, what information they can view, and navigation tips. 
+    The user can choose which of these they want to view, or return to the main menu when finished."""
+    while True:
+        print("What do you need help with?")
+        print("1. How to use the app")
+        print("2. What information you can view")
+        print("3. Navigation tips")
+        print("4. Back to main menu")
+        choice = input("Enter the number corresponding to your choice: ")
+        if choice == "1":
+            print("\nAfter running the file, you will be prompted to enter a city. You will be presented with basic weather data, such as temperature, " \
+            "condition, and what the temperature feels like. \nYou can then choose to view more specific data, such as wind data, rain data, or extra data. " \
+            "You can also choose to view help or exit the program.\n")
+        elif choice == "2":
+            print("\nYou will be automatically presented with basic information, such as temperature, condition, and what the temperature feels like. \n" \
+            "You can then choose to view more specific information, such as that for wind, rain, along with some additional data. \n" \
+            "Wind data includes wind speed, direction, chill, and gust data. \n" \
+            "Rain data includes precipitation, cloud cover, and dew point. \n" \
+            "You can also view additional information on humidity, pressure, visibility, and uv index.\n")
+        elif choice == "3":
+            print("\nNavigation tips:")
+            print("- Use the numeric keys to select options from the menu.")
+            print("- You can navigate back to the main menu at any time by selecting the appropriate option.\n")
+        elif choice == "4":
+            return
+        else:
+            print("\nInvalid choice. Please enter a number between 1 and 4.\n")
+        time.sleep(2)
+
 def temp_ui():
     """Temporary UI to test functions. This will eventually be replaced with a tkinter app-interface.
         This will prompt the user to choose the type of data they wish to view.
@@ -88,7 +118,8 @@ def temp_ui():
         print("1. Wind data")
         print("2. Rain data")
         print("3. Extra data (pressure, humidity, UV index, visibility)")
-        print("4. Exit")
+        print("4. Help")
+        print("5. Exit")
         choice = input("Enter the number corresponding to your choice: ")
         if choice == "1":
             get_wind_data(weather_data)
@@ -97,8 +128,10 @@ def temp_ui():
         elif choice == "3":
             get_extra_data(weather_data)
         elif choice == "4":
+            help()
+        elif choice == "5":
             print("Exiting the program.")
             quit()
         else:
-            print("Invalid choice. Please enter a number between 1 and 4.")
+            print("Invalid choice. Please enter a number between 1 and 5.")
         time.sleep(2)
