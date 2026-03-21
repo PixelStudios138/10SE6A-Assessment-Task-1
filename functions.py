@@ -106,32 +106,55 @@ def help():
             print("\nInvalid choice. Please enter a number between 1 and 4.\n")
         time.sleep(2)
 
-def temp_ui():
-    """Temporary UI to test functions. This will eventually be replaced with a tkinter app-interface.
-        This will prompt the user to choose the type of data they wish to view.
-        This will simulate how the final app will work, but in the terminal instead of a graphical interface."""
+def ui():
+    """Main user interface for the program. This handles gathering data and presenting it to the user, getting help, and exiting the program.
+    This will not be used in startup, as the help function should be accessible before presenting data. It will stay here so the user can 
+    still get help if they need it whilst using the data"""
     city_to_analyse = input("What city would you like to view data on? ").lower()
     weather_data = send_request(city_to_analyse, "current.json")
     gather_main_data(weather_data)
+    continue_choice = input("\nWould you like to view more data? (y/n) ").lower()
+    if continue_choice == "n":
+        print("\nExiting the program.")
+        quit()
+    else:
+        while True:
+            print("\nWhat type of data would you like to view?")
+            print("1. Wind data")
+            print("2. Rain data")
+            print("3. Extra data (pressure, humidity, UV index, visibility)")
+            print("4. Help")
+            print("5. Exit")
+            choice = input("Enter the number corresponding to your choice: ")
+            if choice == "1":
+                get_wind_data(weather_data)
+            elif choice == "2":
+                get_rain_data(weather_data)
+            elif choice == "3":
+                get_extra_data(weather_data)
+            elif choice == "4":
+                help()
+            elif choice == "5":
+                print("\nExiting the program.")
+                quit()
+            else:
+                print("\nInvalid choice. Please enter a number between 1 and 5.\n")
+            time.sleep(2)
+
+def startup():
+    """This function is used to start the program. It will present the user with a welcome message and ask if they want to view help or start the program. 
+    If they choose to start the program, they will be taken to the main user interface.
+    If they choose to view help, they will be taken to the help menu, where they can choose what they want to view. """
+    print("Welcome to the Weather App!")
     while True:
-        print("\nWhat type of data would you like to view?")
-        print("1. Wind data")
-        print("2. Rain data")
-        print("3. Extra data (pressure, humidity, UV index, visibility)")
-        print("4. Help")
-        print("5. Exit")
+        print("\nWould you like to continue, or get some help before starting?")
+        print("1. Start program")
+        print("2. View help")
         choice = input("Enter the number corresponding to your choice: ")
         if choice == "1":
-            get_wind_data(weather_data)
+            ui()
         elif choice == "2":
-            get_rain_data(weather_data)
-        elif choice == "3":
-            get_extra_data(weather_data)
-        elif choice == "4":
             help()
-        elif choice == "5":
-            print("\nExiting the program.")
-            quit()
         else:
-            print("\nInvalid choice. Please enter a number between 1 and 5.\n")
+            print("\nInvalid choice. Please enter 1 or 2.\n")
         time.sleep(2)
