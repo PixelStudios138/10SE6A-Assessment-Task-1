@@ -40,7 +40,7 @@ def gather_main_data(data):
         temperature = data["current"]["temp_c"]
         feels_like = data["current"]["feelslike_c"]
         condition = data["current"]["condition"]["text"].lower()
-        print(f"The temperature in {location}, {region}, {country} is {temperature}°C. It feels like {feels_like}°C.")
+        print(f"\nThe temperature in {location}, {region}, {country} is {temperature}°C. It feels like {feels_like}°C.")
         print(f"It is {condition}")
 
 def get_wind_data(data):
@@ -50,7 +50,7 @@ def get_wind_data(data):
         wind_direction = data["current"]["wind_dir"]
         wind_chill = data["current"]["windchill_c"]
         gust = data["current"]["gust_kph"]
-        print(f"The wind is {wind_speed}kph {wind_direction}, with a chill of {wind_chill}°C")
+        print(f"\nThe wind is {wind_speed}kph {wind_direction}, with a chill of {wind_chill}°C")
         print(f"There is a gust of {gust}kph")
 
 def get_rain_data(data):
@@ -59,7 +59,7 @@ def get_rain_data(data):
         precipitation = data["current"]["precip_mm"]
         cloud = data["current"]["cloud"]
         dew_point = data["current"]["dewpoint_c"]
-        print(f"The precipitation is {precipitation}mm")
+        print(f"\nThe precipitation is {precipitation}mm")
         print(f"The cloud cover is {cloud}%")
         print(f"The dew point is {dew_point}°C")
 
@@ -71,7 +71,7 @@ def get_extra_data(data):
         pressure = data["current"]["pressure_mb"]
         uv_index = data["current"]["uv"]
         visibility = data["current"]["vis_km"]
-        print(f"The pressure is {pressure}mb")
+        print(f"\nThe pressure is {pressure}mb")
         print(f"The humidity is {humidity}%")
         print(f"The UV index is {uv_index}")
         print(f"The visibility is {visibility}km")
@@ -80,7 +80,7 @@ def help():
     """This function provides help to the user, teaching them how to use the app, what information they can view, and navigation tips. 
     The user can choose which of these they want to view, or return to the main menu when finished."""
     while True:
-        print("What do you need help with?")
+        print("\nWhat do you need help with?")
         print("1. How to use the app")
         print("2. What information you can view")
         print("3. Navigation tips")
@@ -130,8 +130,8 @@ def temp_ui():
         elif choice == "4":
             help()
         elif choice == "5":
-            print("Exiting the program.")
+            print("\nExiting the program.")
             quit()
         else:
-            print("Invalid choice. Please enter a number between 1 and 5.")
+            print("\nInvalid choice. Please enter a number between 1 and 5.\n")
         time.sleep(2)
