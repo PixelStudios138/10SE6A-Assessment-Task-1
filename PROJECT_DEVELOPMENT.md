@@ -100,3 +100,11 @@ The following diagrams were made to demonstrate how the code will function befor
 This chart shows the timing for programming this task. It will begin in Week 5 and finish just before the due date in Week 9. 
 
 ![Gantt Chart describing the timing of the development of the assessment task](/Images/GanttChart.png "Gantt Chart of Development Stage")  
+
+### Data Dictionaries
+
+These charts show all the data and variables that are used in the program. The first shows the data from the api, the second shows the variables used by the program.
+
+![Data dictionary describing the data from the database](/Images/api_data_dictionary.png "Data Dictionary from API")  
+
+![Data dictionary describing the variables used in the program](/Images/Data_Dict.png "Data Dictionary of variables in the program")  
