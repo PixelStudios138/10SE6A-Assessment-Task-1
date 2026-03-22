@@ -3,17 +3,16 @@ from api import *
 import requests
 
 base_url = "https://api.weatherapi.com/v1"
-api_type = "" # String to determine what type of data to request, e.g. general weather, forecasts, alerts, etc.
 history = [] # List to store user activity in the program
 
-def send_request(city, api_type):
+def send_request(city):
     """Send requests to the API and get data. The url variable combines all necessary features
        for the request to work. It will try to get data, with 3 exceptions. The first is if it
        takes too long to connect to the API and it times out. The second is if the API takes
        too long to return data, again returning a time out error. The final exception is if the
        api connects, but returns an error code. If none of these exceptions are raised, the api
        will return the database to be stored in a variable and be used later in the program."""
-    url = f"{base_url}/{api_type}?key={api_key}&q={city}"
+    url = f"{base_url}/current.json?key={api_key}&q={city}"
     try:
         response = requests.get(url, timeout=(3, 3))
         try: 
@@ -143,7 +142,7 @@ def ui():
     This will not be used in startup, as the help function should be accessible before presenting data. It will stay here so the user can 
     still get help if they need it whilst using the data"""
     city_to_analyse = input("What city would you like to view data on? ").lower()
-    weather_data = send_request(city_to_analyse, "current.json")
+    weather_data = send_request(city_to_analyse)
     gather_main_data(weather_data)
     history.append(f"Requested and viewed main data on {city_to_analyse}")
     continue_choice = input("\nWould you like to view more data? (y/n) ").lower()
