@@ -144,6 +144,43 @@ def view_history():
     else:
         print("\nInvalid choice. Please enter 'y' or 'n'.")
 
+def additional_data_menu(data):
+    while True:
+        history.append("Entered additional data menu")
+        print("\nWhat type of data would you like to view?")
+        print("1. Wind data")
+        print("2. Rain data")
+        print("3. Extra data (pressure, humidity, UV index, visibility)")
+        print("4. View a different city")
+        print("5. Help")
+        print("6. View history")
+        print("7. Exit")
+        choice = input("Enter the number corresponding to your choice: ")
+        if choice == "1":
+            get_wind_data(data)
+            history.append("Viewed wind data")
+        elif choice == "2":
+            get_rain_data(data)
+            history.append("Viewed rain data")
+        elif choice == "3":
+            get_extra_data(data)
+            history.append("Viewed extra data")
+        elif choice == "4":
+            history.append("Exited additional data menu to view a different city")
+            ui()
+        elif choice == "5":
+            help()
+        elif choice == "6":
+            view_history()
+        elif choice == "7":
+            history.append("Exited program after viewing additional data")
+            save_history()
+            print("\nExiting the program.")
+            quit()
+        else:
+            print("\nInvalid choice. Please enter a number between 1 and 7.\n")
+        time.sleep(2)
+
 def ui():
     """Main user interface for the program. This handles gathering data and presenting it to the user, getting help, and exiting the program.
     This will not be used in startup, as the help function should be accessible before presenting data. It will stay here so the user can 
@@ -159,41 +196,7 @@ def ui():
         print("\nExiting the program.")
         quit()
     else:
-        while True:
-            history.append("Entered additional data menu")
-            print("\nWhat type of data would you like to view?")
-            print("1. Wind data")
-            print("2. Rain data")
-            print("3. Extra data (pressure, humidity, UV index, visibility)")
-            print("4. View a different city")
-            print("5. Help")
-            print("6. View history")
-            print("7. Exit")
-            choice = input("Enter the number corresponding to your choice: ")
-            if choice == "1":
-                get_wind_data(weather_data)
-                history.append("Viewed wind data")
-            elif choice == "2":
-                get_rain_data(weather_data)
-                history.append("Viewed rain data")
-            elif choice == "3":
-                get_extra_data(weather_data)
-                history.append("Viewed extra data")
-            elif choice == "4":
-                history.append("Exited additional data menu to view a different city")
-                ui()
-            elif choice == "5":
-                help()
-            elif choice == "6":
-                view_history()
-            elif choice == "7":
-                history.append("Exited program after viewing additional data")
-                save_history()
-                print("\nExiting the program.")
-                quit()
-            else:
-                print("\nInvalid choice. Please enter a number between 1 and 7.\n")
-            time.sleep(2)
+        additional_data_menu(weather_data)
 
 def startup():
     """This function is used to start the program. It will present the user with a welcome message and ask if they want to view help or start the program. 
