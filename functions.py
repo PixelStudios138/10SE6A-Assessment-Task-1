@@ -11,7 +11,8 @@ def send_request(city):
        takes too long to connect to the API and it times out. The second is if the API takes
        too long to return data, again returning a time out error. The final exception is if the
        api connects, but returns an error code. If none of these exceptions are raised, the api
-       will return the database to be stored in a variable and be used later in the program."""
+       will return the database to be stored in a variable and be used later in the program.
+       If they are, the code will either run again, or quit if timed out"""
     url = f"{base_url}/current.json?key={api_key}&q={city}"
     try:
         response = requests.get(url, timeout=(3, 3))
@@ -20,14 +21,20 @@ def send_request(city):
                 return response.json()
             else:
                 print(f"Failed to get weather data. Status code: {response.status_code}")
-                return None
+                history.append(f"Failed to retrieve weather data for {city}. Returned error code {response.status_code}")
+                ui()
         except:
             print("An error occurred while retrieving weather data.")
-            return None
+            history.append(f"Failed to retrieve weather data for {city}. No error code returned.")
+            ui()
     except requests.exceptions.ConnectTimeout as e:
         print(f"Connection to API timed out. Try again later, ({e})")
+        history.append(f"Connection timed out. Returned error {e}")
+        quit()
     except requests.exceptions.ReadTimeout as e2:
         print(f"Data sent to API timed out: {e2}")
+        history.append(f"Data retrieval timed out. Returned error {e2}")
+        quit()
 
 def gather_main_data(data):
     """This function gathers basic weather data, which will be immediately displayed to the user.
