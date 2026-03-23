@@ -195,8 +195,11 @@ def ui():
         save_history()
         print("\nExiting the program.")
         quit()
-    else:
+    elif continue_choice == "y":
         additional_data_menu(weather_data)
+    else:
+        print("\nInvalid choice. Please enter 'y' or 'n'.")
+        ui()
 
 def startup():
     """This function is used to start the program. It will present the user with a welcome message and ask if they want to view help or start the program. 
