@@ -108,3 +108,31 @@ These charts show all the data and variables that are used in the program. The f
 ![Data dictionary describing the data from the database](/Images/api_data_dictionary.png "Data Dictionary from API")  
 
 ![Data dictionary describing the variables used in the program](/Images/Data_Dict.png "Data Dictionary of variables in the program")  
+
+### Flowcharts
+
+The following flowcharts cover all functions in the program, including the main file
+
+![Flowchart describing how the main function will work](/Images/main_flowchart.png "Flowchart of main.py")  
+
+![Flowchart describing how the startup function will work](/Images/startup_flowchart.png "Flowchart of startup function")  
+
+![Flowchart describing how the ui function will work](/Images/ui_flowchart.png "Flowchart of ui function")  
+
+![Flowchart describing how the additional data menu function will work](/Images/additionaldatamenu_flowchart.png "Flowchart of data menu")  
+
+![Flowchart describing how the send request function will work](/Images/sendrequest_flowchart.png "Flowchart of send request function")  
+
+![Flowchart describing how the gather main data function will work](/Images/gathermaindata_flowchart.png "Flowchart of main data function")  
+
+![Flowchart describing how the wind data function will work](/Images/getwinddata_flowchart.png "Flowchart of wind function")  
+
+![Flowchart describing how the rain function will work](/Images/getraindata_flowchart.png "Flowchart of rain function")  
+
+![Flowchart describing how the extra data function will work](/Images/getextradata_flowchart.png "Flowchart of getting extra data function")  
+
+![Flowchart describing how the help function will work](/Images/help_flowchart.png "Flowchart of help function")  
+
+![Flowchart describing how the save history function will work](/Images/savehistory_flowchart.png "Flowchart of save history function")  
+
+![Flowchart describing how the view history function will work](/Images/viewhistory_flowchart.png "Flowchart of view history function")  
