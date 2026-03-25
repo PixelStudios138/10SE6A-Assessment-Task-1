@@ -363,3 +363,7 @@ END viewhistory
 The final diagram for the design stage is the following system chart. It shows the flow of information within modules, and how those modules relate to each other.
 
 ![Structure chart describing the flow of information within modules](/Images/structure_chart.png "Structure chart of system")
+
+## Maintenance 
+
+Maintenance will be a major factor of the future of this project, as leaving it alone will cause it to eventually cease functioning, preventing future users from being able to use it. 
