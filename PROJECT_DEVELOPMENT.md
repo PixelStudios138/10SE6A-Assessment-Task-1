@@ -358,3 +358,8 @@ OUTPUT history
 END viewhistory
 ```
 
+### System Chart
+
+The final diagram for the design stage is the following system chart. It shows the flow of information within modules, and how those modules relate to each other.
+
+![Structure chart describing the flow of information within modules](/Images/structure_chart.png "Structure chart of system")
