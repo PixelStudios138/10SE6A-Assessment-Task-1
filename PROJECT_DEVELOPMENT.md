@@ -135,4 +135,226 @@ The following flowcharts cover all functions in the program, including the main 
 
 ![Flowchart describing how the save history function will work](/Images/savehistory_flowchart.png "Flowchart of save history function")  
 
-![Flowchart describing how the view history function will work](/Images/viewhistory_flowchart.png "Flowchart of view history function")  
+![Flowchart describing how the view history function will work](/Images/viewhistory_flowchart.png "Flowchart of view history function") 
+
+### Pseudocode
+
+Alongside the flowcharts, I have also made pseudocode for each function. These will be in order of the flowcharts from top to bottom: main, startup, ui, additional data menu, send request, gather main data, get wind data, get rain data, get extra data, help, save history, and view history.
+
+```
+BEGIN main
+DECLARE String history
+startup(history)
+END main
+```
+
+```
+BEGIN startup (history)
+OUTPUT "Welcome to the Weather App!"
+DECLARE int choice
+WHILE true
+    OUTPUT "Would you like to continue, or get help before starting?"
+    OUTPUT "1) Start Program"
+    OUTPUT "2) Get Help"
+    OUTPUT "3) Exit"
+    OUTPUT "Enter the number for your choice: "
+    INPUT choice
+    IF choice == 1
+        ui(history)
+    ELSE IF choice == 2
+        Call help()
+    ELSEIF choice == 3
+        Open history mode write
+        Write "Exited program at startup"
+        Output "Exiting the program"
+        QUIT
+    ELSE
+        Output "Invalid choice. Enter a number between 1 and 3"
+    ENDIF
+ENDWHILE
+END startup
+```
+
+```
+BEGIN ui (history)
+DECLARE string continuechoice
+DECLARE int choice
+DECLARE string city_to_analyse
+DECLARE String Array weatherdata[17]
+OUTPUT "What city would you like to view data on?"
+INPUT city_to_analyse
+sendrequest(city_to_analyse, weatherdata)
+gather_main_data(weatherdata)
+savehistory("Requested and viewed main data", history)
+OUTPUT "Would you like to view more? (y/n)"
+INPUT continuechoice
+IF continuechoice = "y"
+    additionaldatamenu(weatherdata)
+ELSEIF continuechoice = "n"
+    savehistory("Exited program after viewing main data", history)
+    OUTPUT "Exiting the program"
+    QUIT
+ELSE
+    OUTPUT "Invalid choice. Please enter either 'y' or 'n'"
+ENDIF
+END ui
+```
+
+```
+BEGIN additional_data_menu(data)
+    DECLARE Integer choice
+    WHILE true
+        savehistory("Entered additional data menu", history)
+        OUTPUT "What would you like to do?"
+        OUTPUT "1) View Wind Data"
+        OUTPUT "2) View Rain Data"
+        OUTPUT "3) View Extra Data (pressure, uv, etc)"
+        OUTPUT "4) Choose A Different City"
+        OUTPUT "5) Get Help"
+        OUTPUT "6) View History"
+        OUTPUT "7) Exit"
+        OUTPUT "Enter the number for your choice:"
+        INPUT choice
+        IF choice = 1
+            get_wind_data(data)
+        ELSEIF choice = 2
+            get_rain_data(data)
+        ELSEIF choice = 3
+            get_extra_data(data)
+        ELSEIF choice = 4
+            ui()
+        ELSEIF choice = 5
+            help()
+        ELSEIF choice = 6
+            viewhistory()
+        ElLSEIF choice = 7
+            savehistory("Exited the program after viewing additional data", history)
+            OUTPUT "Exiting the program"
+	QUIT
+         ELSE
+            OUTPUT "Invalid choice. Enter a number between 1 and 7"
+        ENDIF
+    ENDWHILE
+END additional_data_menu
+```
+
+```
+BEGIN sendrequest (city, data)
+DECLARE string url = "https://api.weatherapi.com/v1/current.json?key=(apiKey)&q=city"
+DECLARE string response = requests.get(url, timeout=(3, 3))
+IF response == "200"
+    OUTPUT return.json
+ELSE
+    OUTPUT "An error occurred when retrieving data"
+ENDIF
+END sendrequest
+```
+
+```
+BEGIN gather_main_data (data)
+IF data
+    OUTPUT "The temperature in " 
+    OUTPUT data[“location”]
+    OUTPUT data[“region”]
+    OUTPUT data[“country”]
+    OUTPUT "is"
+    OUTPUT data[“temperature_c”]
+    OUTPUT ". It feels like "
+    OUTPUT data[“feelslike_c”]
+    OUTPUT ". It is "
+    OUTPUT data[“condition”]
+ENDIF
+END gather_main_data()
+```
+
+```
+BEGIN get_wind_data (data{})
+IF data
+    OUTPUT "The wind is "
+    OUTPUT data[“wind_speed”]
+    OUTPUT"kph"
+    OUTPUT data[“wind_direction”]
+    OUTPUT " with a chill of "
+    OUTPUT data[“wind_chill”]
+    OUTPUT " degrees celsius. There is a gust of"
+    OUTPUT data[“gust_speed”]
+    OUTPUT" kph."
+ENDIF
+END get_wind_data
+```
+
+```
+BEGIN get_rain_data (data)
+IF data
+    OUTPUT "The precipitation is "
+    OUTPUT data[precipitation”]
+    OUTPUT "mm. The cloud cover is "
+    OUTPUT data[“cloud”]
+    OUTPUT "%. The dew point is "
+    OUTPUT data[“dew_point”]
+    OUTPUT " degrees celsius."
+ENDIF
+END get_rain_data()
+```
+
+```
+BEGIN get_extra_data (data)
+IF data
+    OUTPUT "The pressure is "
+    OUTPUT data[“pressure”]
+    OUTPUT "mb. The humidity is "
+    OUTPUT data[“humidity”]
+    OUTPUT "%. The UV Index is "
+    OUTPUT data[“uv”]
+    OUTPUT ". The visibility is "
+    OUTPUT data[“visibility”]
+    OUTPUT "km."
+ENDIF
+END get_extra_data()
+```
+
+```
+BEGIN help
+DECLARE int choice
+While true
+    savehistory("Entered help menu")
+    OUTPUT "What do you want help with?"
+    OUTPUT "1) How to use the app"
+    OUTPUT "2) What information you can view"
+    OUTPUT "3) Navigation tips"
+    OUTPUT"4) Back to main menu"
+    IF choice == 1
+        OUTPUT "After running the file, you will be prompted to enter a city. You will be presented with basic weather data, such as temperature, condition, and what the temperature feels like. You can then choose to view more specific data, such as wind data, rain data, or extra data. You can also choose to view help or exit the program."
+        savehistory("Viewed help on using the app", history)
+    ELSEIF choice == 2
+        OUTPUT "You will be automatically presented with basic information, such as temperature, condition, and what the temperature feels like. You can then choose to view more specific information, such as that for wind, rain, along with some additional data. Wind data includes wind speed, direction, chill, and gust data. Rain data includes precipitation, cloud cover, and dew point. You can also view additional information on humidity, pressure, visibility, and uv index."
+        savehistory("Viewed help on information that can be viewed", history)
+    ELSEIFchoice == 3
+        OUTPUT "Navigation tips: - Use the numeric keys to select options from the menu. - You can navigate back to the main menu at any time by selecting the appropriate option."
+        savehistory("Viewed help on navigation tips", history)
+    ELSEIF choice == 4
+         savehistory("Exited help menu", history)
+         ui()
+    ELSE
+         OUTPUT "Invalid input. Enter number between 1 and 4"
+    ENDIF
+ENDWHILE
+END help
+```
+
+```
+BEGIN savehistory (message, history)
+OPEN history (write mode)
+WRITE message
+CLOSE
+END
+```
+
+```
+BEGIN viewhistory (history)
+OPEN history mode read
+READ history
+OUTPUT history
+END viewhistory
+```
+
