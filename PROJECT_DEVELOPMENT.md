@@ -416,6 +416,15 @@ It is fog
 
 This can be fixed in the future by getting it to check what the condition is, and applying the appropriate sentence, so you'll get something like `It is sunny` and `There is fog`.
 
+### Peer Feedback
+
+In order to see how other's viewed my program, I got feedback from 2 of my peers. This is what they had to say:
+
+**Oscar:**
+Plus: Easy to navigate with simple and readable information
+Negative: Too text based, gui would make the data even more readable
+
+
 ## Maintenance 
 
 Maintenance will be a major factor of the future of this project, as leaving it alone will cause it to eventually cease functioning, preventing future users from being able to use it. A key challenge the project will face is issues arising from changes to the api key. In order to prevent this problem, I will update the code to adjust to api updates (e.g. in the base url it has the section `/v1`, which might need to be updated to `/v2`, etc), check the website of the api, and constantly test to see if it changes. If the external libraries (such as requests or time) update, I will also update the code to suit these changes. Some errors might not have been noticed when testing, so if another bug is found, I will try to replicate it, find what's causing it, fix it, then test again to make sure it's fixed. Finally, in order to make sure new users understand how to use the project, I will consistently update the documentation (specifically the `PROJETC_DEVELOPMENT.md` and `README.md` files), and make them easily accessible in the project.
