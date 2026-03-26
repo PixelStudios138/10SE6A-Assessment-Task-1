@@ -49,3 +49,19 @@ chore: finished data dictionaries in design stage
 chore: added history statements to send_request function  
 fix: removed return none in send_request to instead prompt the user to try again, so the rest of the program can't be used with an empty dataset  
 chore: added recent commits to commits.md
+
+**March 24**:  
+refactor: removed unused api_type from main.py  
+refactor: moved additional data menu into separate function  
+fix: added error handling for incorrect input, so something like "no" doesn't proceed with the additional data  
+chore: created flowcharts  
+chore: finished flowcharts in design stage  
+
+**March 25**:  
+chore: finished pseudocode in design  
+chore: created structure chart  
+chore: finished design stage  
+chore: started maintenance evaluation  
+chore: uploaded screenshots of testing  
+chore: finished development & integration, maintenance, and added additional use case  
+chore: added more recent commits to commits.md file
