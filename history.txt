@@ -1,0 +1,10 @@
+Requested and viewed main data on gosford
+Entered additional data menu
+Viewed current session history
+Viewed history from previous sessions
+Entered additional data menu
+Viewed rain data
+Entered additional data menu
+Exited additional data menu to view a different city
+Requested and viewed main data on london
+Exited program after viewing main data
