@@ -424,6 +424,9 @@ In order to see how other's viewed my program, I got feedback from 2 of my peers
 Plus: Easy to navigate with simple and readable information
 Negative: Too text based, gui would make the data even more readable
 
+**Leroy:**
+Plus: Accessible program, Very easy to navigate, Wide range of information 
+Negative: Unable to view other cities unless you choose to
 
 ## Maintenance 
 
