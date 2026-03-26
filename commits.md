@@ -65,3 +65,6 @@ chore: started maintenance evaluation
 chore: uploaded screenshots of testing  
 chore: finished development & integration, maintenance, and added additional use case  
 chore: added more recent commits to commits.md file
+chore: got peers to give feedback
+chore: added temporary history so history file will work
+chore: added final commits to commits.md
