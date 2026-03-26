@@ -398,7 +398,7 @@ The next function I implemented was the help function. There are 3 things you ca
 
 ![Final screenshot of UI test with help feature](/Images/ui_test5.png "Help testing 3")
 
-After that, I redid the UI quite a bit. After developing the save/view history functions, I added a startup menu allowing the user to continue or view help before attempting to run the program. After inputting the city as per usual (after continuing into the program), the user will be given the initial data as before, but then asked if they wish to continue. If the user chooses yes, they will be prompted with 7 options: view wind data, view rain data, view additional data, choose a different city to view information on, get help, view history, or exit. If the user chooses to view their history, the system will present them with their history in the session, and the user can choose to see the full history, which will be read from a seperate file called `history.txt`. Before the program exits, the session history will be added to that file so the user can get that data later.
+After that, I redid the UI quite a bit. After developing the save/view history functions, I added a startup menu allowing the user to continue or view help before attempting to run the program. After inputting the city as per usual (after continuing into the program), the user will be given the initial data as before, but then asked if they wish to continue. If the user chooses yes, they will be prompted with 7 options: view wind data, view rain data, view additional data, choose a different city to view information on, get help, view history, or exit. If the user chooses to view their history, the system will present them with their history in the session, and the user can choose to see the full history, which will be read from a seperate file called `history.txt`. Before the program exits, the session history will be added to that file so the user can get that data later. 
 
 ![Screenshot of final UI test](/Images/ui_test6.png "Final testing")
 
@@ -408,7 +408,13 @@ After that, I redid the UI quite a bit. After developing the save/view history f
 
 ### System Evaluation
 
-The system is fully functional, and does everything it needs to. It is easy to navigate, using just keyboard input (which is limited to just number keys except for inputting the city name). The full dataset is able to viewed (in small related chunks), the user can get help, the system can store session data and present it to the user, then save that history to a seperate file for later usage (which can also be viewed by the user). It has seperate screens to view so the user doesn't get overwhelmed with choices. More features that could be added in the future are the ability to view things like weather alerts and forecasts (utilising different types of the API), and creating a graphical user interface to turn it into an app.
+The system is fully functional, and does everything it needs to. It is easy to navigate, using just keyboard input (which is limited to just number keys except for inputting the city name). The full dataset is able to viewed (in small related chunks), the user can get help, the system can store session data and present it to the user, then save that history to a seperate file for later usage (which can also be viewed by the user). It has seperate screens to view so the user doesn't get overwhelmed with choices. More features that could be added in the future are the ability to view things like weather alerts and forecasts (utilising different types of the API), and creating a graphical user interface to turn it into an app.One slight bug that does exist in the program is when displaying the condition, it will sometimes be grammatically incorrect. Rather than checking through what output it will receive, it states 'It is' and then the condition. This is fine if it's sunny or partly cloudy, but sometimes you can receive an output like this:
+
+```
+It is fog
+```
+
+This can be fixed in the future by getting it to check what the condition is, and applying the appropriate sentence, so you'll get something like `It is sunny` and `There is fog`.
 
 ## Maintenance 
 
