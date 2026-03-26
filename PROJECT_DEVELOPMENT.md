@@ -21,7 +21,7 @@ This markdown file will go over the stages of the Software Development life Cycl
 - It may also display what the temperature feels like, the pressure, precipitation, humidity, and percentage of clouds.
 
 **Core Features:**  
-- The system must be an app
+- The system must be console-based
 - A user can input a city in the world, and the weather for that location will be displayed, such as:
   - temperature
   - condition
@@ -46,7 +46,8 @@ This markdown file will go over the stages of the Software Development life Cycl
 - This will be checked by using the `timeout()` function, if it doesn't load within 3 seconds, the system will timeout and return an error without crashing the system telling the user to try again later
 
 **Useability/Accessibility:**  
-- To help with accessibility, the system will be easy to navigate by having text telling people what to do
+- To help with accessibility, text will be seperated by blank lines to prevent it from being clunky
+- After something is displayed, there will be a 2 second delay to help the user find the output and not get lost
 - The text will also be fairly large to help those with slight visual impairments
 
 **Reliability:**  
@@ -80,9 +81,24 @@ This markdown file will go over the stages of the Software Development life Cycl
 2. Filter Data
    - Find the specific data to be used and store it in variables, and remove any unwanted information
 3. Present Data
-   - System displays data as text with some images
+   - System displays data as text
 
 **Postconditions:** Data is successfully displayed to the user
+
+**Use Case 3: History:**  
+**Actor:** User  
+**Preconditions:** History file
+
+1. Store Session History
+   - After each action, store it in a list
+2. Present Session History
+   - Show what's been done in the session
+3. Load previous history
+   - System loads history from history file
+4. Present previous history
+   - System displays full history
+
+**Postconditions:** History is successfully displayed to the user
 
 ## Determining Specifications
 
@@ -364,6 +380,36 @@ The final diagram for the design stage is the following system chart. It shows t
 
 ![Structure chart describing the flow of information within modules](/Images/structure_chart.png "Structure chart of system")
 
+## Development & Integration
+
+### Screenshots
+
+The project took a while to develop, and not all of it came together at once. I started off with the easiest functions first in order to test its capability and see how things would look. The first iteration of the UI started by prompting the user to input the city they wish to view weather information on, before giving them the options to view wind, rain, or additional data, or leave.
+
+![Screenshot of initial UI test](/Images/ui_test1.png "Initial testing")
+
+![Another screenshot of intial UI test](/Images/ui_test2.png "Initial testing")
+
+The next function I implemented was the help function. There are 3 things you can get help with. This wasn't too hard to add to the existing UI, and I didn't have any drastic UI overhauls.
+
+![Screenshot of UI test with help feature](/Images/ui_test3.png "Help testing")
+
+![Another screenshot of UI test with help feature](/Images/ui_test4.png "Help testing 2")
+
+![Final screenshot of UI test with help feature](/Images/ui_test5.png "Help testing 3")
+
+After that, I redid the UI quite a bit. After developing the save/view history functions, I added a startup menu allowing the user to continue or view help before attempting to run the program. After inputting the city as per usual (after continuing into the program), the user will be given the initial data as before, but then asked if they wish to continue. If the user chooses yes, they will be prompted with 7 options: view wind data, view rain data, view additional data, choose a different city to view information on, get help, view history, or exit. If the user chooses to view their history, the system will present them with their history in the session, and the user can choose to see the full history, which will be read from a seperate file called `history.txt`. Before the program exits, the session history will be added to that file so the user can get that data later.
+
+![Screenshot of final UI test](/Images/ui_test6.png "Final testing")
+
+![Screenshot of UI test with history feature](/Images/ui_test7.png "Final testing")
+
+![Screenshot of UI test with view another city feature](/Images/ui_test_8.png "Final testing")
+
+### System Evaluation
+
+The system is fully functional, and does everything it needs to. It is easy to navigate, using just keyboard input (which is limited to just number keys except for inputting the city name). The full dataset is able to viewed (in small related chunks), the user can get help, the system can store session data and present it to the user, then save that history to a seperate file for later usage (which can also be viewed by the user). It has seperate screens to view so the user doesn't get overwhelmed with choices. More features that could be added in the future are the ability to view things like weather alerts and forecasts (utilising different types of the API), and creating a graphical user interface to turn it into an app.
+
 ## Maintenance 
 
-Maintenance will be a major factor of the future of this project, as leaving it alone will cause it to eventually cease functioning, preventing future users from being able to use it. 
+Maintenance will be a major factor of the future of this project, as leaving it alone will cause it to eventually cease functioning, preventing future users from being able to use it. A key challenge the project will face is issues arising from changes to the api key. In order to prevent this problem, I will update the code to adjust to api updates (e.g. in the base url it has the section `/v1`, which might need to be updated to `/v2`, etc), check the website of the api, and constantly test to see if it changes. If the external libraries (such as requests or time) update, I will also update the code to suit these changes. Some errors might not have been noticed when testing, so if another bug is found, I will try to replicate it, find what's causing it, fix it, then test again to make sure it's fixed. Finally, in order to make sure new users understand how to use the project, I will consistently update the documentation (specifically the `PROJETC_DEVELOPMENT.md` and `README.md` files), and make them easily accessible in the project.
